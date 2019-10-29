@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 const App = () => (
       <View style={styles.container}>
         <Text testID="welcome" style={styles.welcome}>Hello!</Text>
+        <Button onPress={() => {}} title="Click for Time" testID="getTime" />
       </View>
 );
 
