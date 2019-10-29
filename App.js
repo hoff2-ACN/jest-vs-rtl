@@ -6,7 +6,7 @@ const App = props => (
     <View style={styles.container}>
         <Text testID="welcome" style={styles.welcome}>Hello!</Text>
         <Button
-            onPress={() => {}}
+            onPress={props.getCurrentTime}
             title="Click for Time"
             testID="getTime"
         />
