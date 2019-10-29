@@ -8,7 +8,9 @@ describe('Example', () => {
   });
 
   it('starts getting time messages once you press the button', async () => {
+    await expect(element(by.id('time'))).toBeNotVisible();
     const button = element(by.id('getTime'));
     await button.tap();
+    await expect(element(by.id('time'))).toBeVisible();
   });
 });
