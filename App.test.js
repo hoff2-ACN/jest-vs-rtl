@@ -5,13 +5,14 @@ import { fireEvent, render, wait} from '@testing-library/react-native';
 
 const chance = new Chance();
 
+const newTime = chance.string();
+const properties = {
+    currentTime: chance.string(),
+    getCurrentTime: () => newTime
+};
+
 describe("App", () => {
     let app;
-
-    const properties = {
-        currentTime: chance.string(),
-        getCurrentTime: () => {}
-    };
 
     beforeEach(() => {
         app = render(<App {...properties} />);
@@ -26,8 +27,7 @@ describe("App", () => {
             fireEvent.press(getTimeButton);
 
             await wait(() => expect(queryByTestId('time')).toBeTruthy());
-
-            expect(getByTestId('time').props.children).toEqual('Current Time: ' + properties.currentTime);
+            await wait(() => expect(getByTestId('time').props.children).toEqual('Current Time: ' + newTime));
         });
     });
 });

@@ -1,23 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Button, StyleSheet, Text, View} from 'react-native';
 
-const App = props => (
-    <View style={styles.container}>
+const App = props => {
+    const [time, setTime] = useState(props.currentTime);
+    return (<View style={styles.container}>
         <Text testID="welcome" style={styles.welcome}>Hello!</Text>
         <Button
-            onPress={props.getCurrentTime}
+            onPress={() => setTime(props.getCurrentTime)}
             title="Click for Time"
             testID="getTime"
         />
-        {props.currentTime &&
-        <Text testID="time">{'Current Time: ' + props.currentTime}</Text>
+        {time &&
+        <Text testID="time">{'Current Time: ' + time}</Text>
         }
-    </View>
-);
+    </View>);
+}
 
 App.propTypes = {
-    currentTime: PropTypes.string
+    currentTime: PropTypes.string,
+    getCurrentTime: PropTypes.func
 };
 
 export default App;
