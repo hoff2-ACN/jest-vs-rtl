@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from 'react-native';
+import {Button, Text} from 'react-native';
 import {shallow} from 'enzyme';
 import Chance from 'chance';
 import * as sinon from "sinon";
@@ -10,11 +10,11 @@ const chance = new Chance();
 describe("App", () => {
     let app;
 
-    const getTimeAC = sinon.spy();
+    const newTime = chance.string();
 
     const properties = {
         currentTime: chance.string(),
-        getCurrentTime: getTimeAC
+        getCurrentTime: () => newTime
     };
 
     beforeEach(() => {
@@ -27,7 +27,7 @@ describe("App", () => {
 
             getTimeButton.simulate("press");
 
-            expect(getTimeAC.calledWithExactly()).toEqual(true);
+            expect(app.find(Text).at(1).childAt(0).text()).toEqual('Current Time: ' + newTime);
         });
     });
 });
